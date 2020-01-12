@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class CodingExamB {
 	/*
@@ -24,8 +25,28 @@ public class CodingExamB {
 		 *    into one large String. The string will also state the file name and
 		 *    the line number for where each TODO was found. 
 		*/
-		
-		return "";
+		String l =  "";
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(fileName));
+			String s = br.readLine();
+			int num = 1;
+			while(s != null){
+				if(s.contains("//TODO:")){
+				s.concat(num + ": ");
+				s.concat(s);
+				s.concat("\n");
+				s = br.readLine();
+				System.out.println(s);
+				num++;
+				}
+			}
+			br.close();
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+
+		System.out.println(l);
+		return l;
 	}
 	
 	public static void main(String[] args) {
